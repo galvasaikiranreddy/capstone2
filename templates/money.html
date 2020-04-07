@@ -1,0 +1,156 @@
+
+{% extends "base.html" %} {% block content %}
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Foods</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<!--  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='main.css') }}" />-->
+</head>
+
+<body>
+  <div class="wrapper">
+  <div class="sidebar" data-image={{url_for('static', filename='logo.jpg')}}"  data-color="purple">
+      <!--
+  Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+
+  Tip 2: you can also add an image using data-image tag
+-->
+      <div class="sidebar-wrapper">
+          <div class="logo">
+              <a href="/" class="simple-text">
+                <img src="{{url_for('static', filename='logo.jpg')}}" style="width:200px;" />
+                 </a>
+          </div>
+          <ul class="nav">
+            <li>
+                <a class="nav-link" href="/homepage">
+                    <p>Home</p>
+                </a>
+            </li>
+              <li>
+                  <a class="nav-link" href="/dashboard">
+                      <p>Dashboard</p>
+                  </a>
+              </li>
+              <li>
+                  <a class="nav-link" href="/profile">
+                      <p>User Profile</p>
+                  </a>
+              </li>
+
+              <li>
+                  <a class="nav-link" href="/yoga">
+                      <p>Yoga</p>
+                  </a>
+              </li>
+              <li  class="nav-item active">
+                  <a class="nav-link" href="/food">
+                        <p>Food</p>
+                  </a>
+              </li>
+              <li>
+                  <a class="nav-link" href="/journal">
+                      <p>Lifestyle Journal</p>
+                  </a>
+              </li>
+              <li>
+                  <a class="nav-link" href="/calorie">
+                      <p>Calorie Estimation</p>
+                  </a>
+              </li>
+              <li>
+                  <a class="nav-link" href="/bmi">
+                      <p>BMI Calculator</p>
+                  </a>
+              </li>
+              <li>
+                  <a class="nav-link" href="/moneymanager">
+                      <p>Money Manager</p>
+                  </a>
+              </li>
+
+          </ul>
+      </div>
+  </div>
+  <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg " color-on-scroll="500">
+          <div class="container-fluid">
+              <a class="navbar-brand" href="#pablo"> FOOD </a>
+              <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-bar burger-lines"></span>
+                  <span class="navbar-toggler-bar burger-lines"></span>
+
+         	            </button>
+              <div class="collapse navbar-collapse justify-content-end" id="navigation">
+                  <ul class="nav navbar-nav mr-auto">
+
+                  </ul>
+                  <ul class="navbar-nav ml-auto">
+                      <li class="nav-item">
+                          <a class="nav-link" href="#pablo">
+                              <span class="no-icon">About</span>
+                          </a>
+                          <a class="nav-link" href="#pablo">
+                              <span class="no-icon">Contact Us</span>
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="#pablo">
+                              <span class="no-icon">Log Out</span>
+                          </a>
+                      </li>
+
+                  </ul>
+              </div>
+          </div>
+      </nav>
+      <!-- End Navbar -->
+      <div class="content">
+          <div class="container-fluid">
+              <div class="row">
+                      <div class="col-md-4">
+                      <div class="card ">
+                          <div class="card-header ">
+                              <h4 class="card-title" style="text-align:center; align-content:center;">Food Meal Recognition</h4>
+                              <p class="card-category"></p>
+                          </div>
+                          <div class="card-body ">
+                                    <div class="panel">
+
+                                  </div>
+
+                                  </div>
+
+                                </div>
+                          </div>
+                  <div class="col-md-8" >
+                      <div class="card ">
+                          <div class="card-header " style="text-align:center;">
+                              <h4 class="card-title">Your Predicted Food</h4>
+                              <p class="card-category"></p>
+                          </div>
+                          <div class="card-body " style="height: 310px; text-align: center;">
+
+                                </div></div>
+                          </div>
+                      </div>
+                  </div>
+
+  </div>
+  </div>
+  </div>
+</body>
+
+{% endblock content %}
+{% block scripts %}
+
+<script src="{{ url_for('static',filename='jquery.3.2.1.min..js') }}"></script>
+<script src="{{ url_for('static',filename='popper.min.js') }}"></script>
+<script src="{{ url_for('static',filename='bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static',filename='bootstrap-switch.js') }}"></script>
+<script src="{{ url_for('static',filename='chartist.min.js') }}"></script>
+<script src="{{ url_for('static',filename='bootstrap-notify.js') }}"></script>
+<script src="{{ url_for('static',filename='light-bootstrap-dashboard.js') }}"></script>
+{% endblock scripts %}
