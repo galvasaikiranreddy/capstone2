@@ -8,7 +8,7 @@ from gevent.pywsgi import WSGIServer
 
 #Login
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import UserMixin
+from flask_login import UserMixin, LoginManager
 from werkzeug.security import generate_password_hash, check_password_hash
 
 # TensorFlow and tf.keras
@@ -31,6 +31,9 @@ app = Flask(__name__)
 app.config.from_object('config.Config')
 
 db = SQLAlchemy(app)
+login_manager = LoginManager()
+
+login_manager.init_app(app)
 
 
 class User(UserMixin, db.Model):
@@ -59,6 +62,12 @@ class User(UserMixin, db.Model):
 
 db.create_all()
 db.session.commit()
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    # since the user_id is just the primary key of our user table, use it in the query for the user
+    return User.query.get(int(user_id))
 
 print('Model loaded. Check http://127.0.0.1:5000/')
 
