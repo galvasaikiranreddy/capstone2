@@ -6,6 +6,11 @@ from flask import Flask, redirect, url_for, request, render_template, Response, 
 from werkzeug.utils import secure_filename
 from gevent.pywsgi import WSGIServer
 
+#Login
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import UserMixin
+from werkzeug.security import generate_password_hash, check_password_hash
+
 # TensorFlow and tf.keras
 import tensorflow as tf
 from tensorflow import keras
@@ -22,6 +27,38 @@ from keras.applications.mobilenet_v2 import MobileNetV2
 
 # Declare a flask app
 app = Flask(__name__)
+# Application Configuration
+app.config.from_object('config.Config')
+
+db = SQLAlchemy(app)
+
+
+class User(UserMixin, db.Model):
+    """Model for user accounts."""
+
+    __tablename__ = 'users'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, nullable=False, unique=False)
+    email = db.Column(db.String(40), unique=True, nullable=False)
+    password = db.Column(db.String(200), primary_key=False, unique=False, nullable=False)
+    created_on = db.Column(db.DateTime, index=False, unique=False, nullable=True)
+    last_login = db.Column(db.DateTime, index=False, unique=False, nullable=True)
+
+    def set_password(self, password):
+        """Create hashed password."""
+        self.password = generate_password_hash(password, method='sha256')
+
+    def check_password(self, password):
+        """Check hashed password."""
+        return check_password_hash(self.password, password)
+
+    def __repr__(self):
+        return '<User {}>'.format(self.email)
+
+
+db.create_all()
+db.session.commit()
 
 print('Model loaded. Check http://127.0.0.1:5000/')
 
@@ -115,15 +152,6 @@ def about():
 def contact():
     return render_template('contact.html')
 
-@app.route('/register')
-def register():
-    return render_template('register.html')
-
-@app.route('/login')
-def login():
-    return render_template('login.html')
-
-
 #yoga pose prediction
 @app.route('/yoga', methods=['GET'])
 def yoga():
@@ -182,6 +210,10 @@ def predictfood():
 if __name__ == '__main__':
     # app.run(port=5002, threaded=False)
     #app.run(port=5000, debug=True)
+
+    with app.app_context():
+        from auth import auth_bp
+        app.register_blueprint(auth_bp)
 
     # Serve the app with gevent
     http_server = WSGIServer(('0.0.0.0', 5000), app)

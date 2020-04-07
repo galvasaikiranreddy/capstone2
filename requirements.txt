@@ -6,3 +6,5 @@ gevent
 pillow
 h5py
 tensorflow==2.0
+Flask-login
+flask-sqlalchemy
