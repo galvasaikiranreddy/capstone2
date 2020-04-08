@@ -1,5 +1,5 @@
 """Routes for user authentication."""
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import login_required, logout_user, current_user, login_user
 from flask import current_app as app
 from app import User, db, login_manager
