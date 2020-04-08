@@ -131,11 +131,11 @@ def index():
 
 @app.route('/dashboard', methods=['GET'])
 def dashboard():
-    return render_template('dashboard.html')
+    return render_template('dashboard.html', title="Dashboard")
 
 @app.route('/profile', methods=['GET'])
 def profile():
-    return render_template('profile.html')
+    return render_template('profile.html', title="Profile")
 
 @app.route('/journal', methods=['GET'])
 def journal():
@@ -151,7 +151,7 @@ def money():
 
 @app.route('/homepage', methods=['GET'])
 def homepage():
-    return render_template('homepage.html')
+    return render_template('homepage.html', title="Home")
 
 @app.route('/about', methods=['GET'])
 def about():
