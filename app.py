@@ -139,7 +139,7 @@ def profile():
 
 @app.route('/journal', methods=['GET'])
 def journal():
-    return render_template('journal.html')
+    return render_template('journal.html', title="Lifestyle Journal")
 
 @app.route('/calorie', methods=['GET'])
 def calorie():
@@ -165,7 +165,7 @@ def contact():
 @app.route('/yoga', methods=['GET'])
 def yoga():
     # Main page
-    return render_template('index.html')
+    return render_template('yoga.html', title="Yoga")
 
 @app.route('/predictyoga', methods=['GET', 'POST'])
 def predictyoga():
@@ -188,7 +188,7 @@ def predictyoga():
 @app.route('/food', methods=['GET'])
 def food():
     # Main page
-    return render_template('food.html')
+    return render_template('food.html', title="Food")
 
 @app.route('/predictfood', methods=['GET', 'POST'])
 def predictfood():
