@@ -95,15 +95,16 @@
                                     <span class="no-icon">Contact Us</span>
                                 </a>
                             </li>
+                            {% if not current_user.is_anonymous %}
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="https://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    <span class="no-icon">Arun Galva</span>
+                                <a class="nav-link dropdown-toggle"  id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <span class="no-icon">{{current_user.name}}</span>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <a class="dropdown-item" href="/logout">Logout</a>
                                 </div>
                             </li>
-
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
@@ -117,7 +118,7 @@
 {% endblock content %}
 {% block scripts %}
 
-<script src="{{ url_for('static',filename='jquery.3.2.1.min..js') }}"></script>
+<script src="{{ url_for('static',filename='jquery.3.2.1.min.js') }}"></script>
 <script src="{{ url_for('static',filename='popper.min.js') }}"></script>
 <script src="{{ url_for('static',filename='bootstrap.min.js') }}"></script>
 <script src="{{ url_for('static',filename='bootstrap-switch.js') }}"></script>

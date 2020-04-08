@@ -8,7 +8,7 @@ from gevent.pywsgi import WSGIServer
 
 #Login
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import UserMixin, LoginManager
+from flask_login import UserMixin, LoginManager, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 
 # TensorFlow and tf.keras
@@ -131,7 +131,7 @@ def index():
 
 @app.route('/dashboard', methods=['GET'])
 def dashboard():
-    return render_template('dashboard.html', title="Dashboard")
+    return render_template('dashboard.html', title="Dashboard",user=current_user)
 
 @app.route('/profile', methods=['GET'])
 def profile():
