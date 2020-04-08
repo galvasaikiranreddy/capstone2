@@ -70,9 +70,13 @@
                 </li>
                 <li><a href="/about"><span>About</span></a></li>
                 <li><a href="/Contact"><span>Contact Us!</span></a></li>
+                {% if current_user.is_anonymous %}
                 <li><a href="/login"><span class="glyphicon glyphicon-log-in"> Sign In</a></li>
                 <li><a href="/register"><span class="glyphicon glyphicon-log-in"> Sign Up</a></li>
-
+                {% else %}
+                <li><a href="/logout"><span class="glyphicon glyphicon-log-in"> LOG OUT</a></li>
+                {% endif %}
+ 
 
                 </ul>
               </ul>
